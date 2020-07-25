@@ -1,0 +1,46 @@
+{
+  "name": "cypress-poc",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cypress POC for UI Automation.",
+  "scripts": {
+    "clean:temp": "del-cli cypress/support/temp.json",
+    "clean:reports": "IF EXIST cypress\\reports (rmdir /S /Q cypress\\reports && mkdir cypress\\reports && mkdir cypress\\reports\\mocha && mkdir cypress\\reports\\mochareports\\) ELSE (mkdir cypress\\reports && mkdir cypress\\reports\\mocha && mkdir cypress\\reports\\mochareports\\)",
+    "pretest": "npm run clean:reports && npm run clean:temp",
+    "scripts": "cypress run",
+    "combine-reports": "mochawesome-merge cypress/reports/mocha/*.json > cypress/reports/mochareports/report.json",
+    "generate-report": "marge cypress/reports/mochareports/report.json -f report -o cypress/reports/mochareports",
+    "posttest": "npm run combine-reports && npm run generate-report",
+    "test": "npm run scripts || npm run posttest",
+    "cypress:open": "cypress open"
+  },
+  "keywords": [
+    "Cypress",
+    "JavaScript",
+    "TypeScript",
+    "UI Automation"
+  ],
+  "author": "Raj Kumar",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^14.0.23",
+    "codelyzer": "^6.0.0",
+    "cypress-multi-reporters": "1.4.0",
+    "del-cli": "3.0.1",
+    "mocha": "8.0.1",
+    "mochawesome": "^6.1.1",
+    "mochawesome-merge": "^4.1.0",
+    "mochawesome-report-generator": "5.1.0",
+    "cypress": "^4.10.0",
+    "jasmine-core": "~2.99.1",
+    "jasmine-spec-reporter": "~4.2.1",
+    "karma": "^5.1.0",
+    "karma-jasmine": "~1.1.2",
+    "karma-jasmine-html-reporter": "^0.2.2",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "ts-node": "~7.0.0",
+    "tslint": "~5.11.0",
+    "typescript": "~3.7.5"
+  },
+  "repository": {}
+}

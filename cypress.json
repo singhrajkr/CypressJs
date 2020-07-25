@@ -1,0 +1,29 @@
+{
+    "baseUrl": "https://shore-qa.otaliodev.com",
+    "defaultCommandTimout": 15000,
+    "blacklistHosts": "*google.com",
+    "env": {
+        "projectId": "Otalio",
+        "EMAIL": "medha@otalio.com",
+        "PASSWORD": "888"
+    },
+    "trashAssetsBeforeRuns": true,
+    "viewportHeight": 660,
+    "waitForAnimations": true,
+    "onBeforeScreenshot": null,
+    "screenshotOnRunFailure": true,
+    "onAfterScreenshot": null,
+    "capture": "runner",
+    "chromeWebSecurity": false,
+    "reporter": "cypress-multi-reporters",
+    "reporterOptions": {
+        "reporterEnabled": "mochawesome",
+        "mochawesomeReporterOptions": {
+            "reportDir": "cypress/reports/mocha",
+            "quite": true,
+            "overwrite": false,
+            "html": false,
+            "json": true
+        }
+    }
+}
