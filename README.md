@@ -1,7 +1,7 @@
 ## Pre-requisites
 
 Node.js: https://nodejs.org/en/download/
-Visual Studio Code: https://code.visualstudio.com/download
+Visual Studio Code: https://code.visualstudio.com/download OR Any Choice of IDE
 
 ## Pre-Installation Directions
 
@@ -9,6 +9,7 @@ Visual Studio Code: https://code.visualstudio.com/download
 
 2. clone this repository with 
 ```
+$git clone https://github.com/SinghRajKr/CypressJs.git
 ```
 3. Install dependencies by running the following command in terminal from the root directory of this project where package.json is present.
 ``` 
