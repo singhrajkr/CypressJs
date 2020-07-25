@@ -1,3 +1,9 @@
+## How you can make this better 
+You can add some generic commands or may be plugins
+Feel free to Raise Pull Request.
+If you face any difficulties while using this project. Please reachout to me via LinkedIn or Twitter.
+
+
 ## Pre-requisites
 
 Node.js: https://nodejs.org/en/download/
