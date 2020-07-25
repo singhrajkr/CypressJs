@@ -21,7 +21,11 @@ describe('Delete Country Test', () => {
     });
 
     it('Enter Code to search created country', () => {
-        cy.getRuntimeGlobalData('#complex-filter-search-overlay-term-input', 'countryCode');
+        cy.fixture('countryCode').then((json) => {
+            cy.log(`${json.countryCode}`);
+            debugger
+            cy.get('#complex-filter-search-overlay-term-input').type(json.countryCode);
+        });
         cy.get('#breadcrumbs-title').click();
     });
 

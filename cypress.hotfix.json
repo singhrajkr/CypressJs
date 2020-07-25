@@ -1,11 +1,11 @@
 {
-    "baseUrl": "https://shore-qa.otaliodev.com",
+    "baseUrl": "https://hotfix.somedomain.com",
     "defaultCommandTimout": 15000,
     "blacklistHosts": ["*google.com"],
     "env": {
-        "projectId": "Otalio",
-        "EMAIL": "medha@otalio.com",
-        "PASSWORD": "888"
+        "PROJECT_ID": "YOUR_PROJECT_NAME",
+        "EMAIL": "admin@somedomain.com",
+        "PASSWORD": "HOTFIX_ENV_PASSWORD"
     },
     "trashAssetsBeforeRuns": true,
     "viewportHeight": 660,
@@ -17,7 +17,10 @@
     "onAfterScreenshot": null,
     "videoUploadOnPasses": false,
     "capture": "runner",
-    "firefoxGcInterval": { "runMode": 1, "openMode": 1 },
+    "firefoxGcInterval": {
+        "runMode": 1,
+        "openMode": 1
+    },
     "chromeWebSecurity": false,
     "reporter": "cypress-multi-reporters",
     "reporterOptions": {

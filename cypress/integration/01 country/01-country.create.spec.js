@@ -15,7 +15,7 @@ describe('Create Country Test', () => {
 
     it('Can login with valid email and password', () => {
         cy.login(Cypress.env('EMAIL'), Cypress.env('PASSWORD'));
-     });
+    });
 
     it('Has correct url and page title', () => {
         cy.url().should('include', '/configuration/country');
@@ -24,19 +24,18 @@ describe('Create Country Test', () => {
 
     it('Click on Add Country Icon', () => {
         cy.get('#country-list-add-mat-icon').click();
-        // cy.url().should('include', '/configuration/country');
     });
 
     it('Enter Code', () => {
-        cy.setAndEnterUniqueCode('#country-editor-code-input', 'countryCode');
-    });
-
-    it('Enter Code', () => {
-        cy.setAndEnterUniqueCode('#country-editor-code-input', 'countryCode');
+        cy.enterUniqueCode('#country-editor-code-input', 'countryCode', true);
     });
 
     it('Enter Description', () => {
-        cy.getRuntimeGlobalData('#description-en-input', 'countryCode');
+        cy.fixture('countryCode').then((json) => {
+            cy.log(`${json.countryCode}`);
+            debugger
+            cy.get('#description-en-input').type(json.countryCode);
+        })
     });
 
     it('Enter Nationality', () => {
@@ -56,11 +55,16 @@ describe('Create Country Test', () => {
     });
 
     it('Enter Comment', () => {
-        cy.getRuntimeGlobalData('#country-editor-comments-textarea', 'countryCode');
+        cy.fixture('countryCode').then((json) => {
+            cy.log(`${json.countryCode}`);
+            debugger
+            cy.get('#country-editor-comments-textarea').type(json.countryCode + '  Comments');
+        });
     });
 
     it('Click Save button to create country', () => {
         cy.get('#country-editor-save-button').click();
+        cy.wait(5000)
     });
 
 });

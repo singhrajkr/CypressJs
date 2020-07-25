@@ -14,31 +14,20 @@ describe('Test Login Functionality suite', () => {
     });
 
     it('Fixture One', () => {
-       cy.fixture('profile').then((json) => {
-           cy.log(`${json.code}`)
-       })
+        cy.fixture('profile').then((json) => {
+            cy.log(`${json.code}`);
+            debugger
+        })
     });
 
     it('Fixture Two', () => {
         cy.fixture('users').then((user) => {
+            debugger;
             cy.log(`${user[0].name}`)
         })
     });
 
-    // it('Has correct url and page title', () => {
-    //     cy.url().should('eq', 'https://shore-qa.otaliodev.com/authentication/login');
-    //     cy.title().should('eq', 'Otalio - Auth');
-    // });
-
-    // it('Has correct validation message', () => {
-    //     cy.get('#login-email-input').click();
-    //     cy.get('#login-email-input').click();
-    //     cy.get('#login-password-input').click();
-    //     cy.get('#mat-error-0').should('have.text', ' Email is required');
-    //     cy.get('#mat-error-0').should('have.html', ' Email is <span class="font-weight-bold">required</span>');
-    // });
-
-    // it('Can login with valid email and password', () => {
-    //     cy.login(Cypress.env('EMAIL'), Cypress.env('PASSWORD'));
-    // });
+    it('Can login with valid email and password', () => {
+        cy.login(Cypress.env('EMAIL'), Cypress.env('PASSWORD'));
+    });
 });

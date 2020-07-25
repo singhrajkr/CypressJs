@@ -13,24 +13,24 @@ describe('Update Country Test', () => {
         cy.saveLocalStorageCache();
     });
 
-    it('Can login with valid email and password', () => {
-        cy.login(Cypress.env('EMAIL'), Cypress.env('PASSWORD'));
-    });
-
     it('Click code filter Icon', () => {
         cy.get('#complex-filter-label-code-open-button').click();
     });
 
     it('Enter Code to search created country', () => {
-        cy.getRuntimeGlobalData('#complex-filter-search-overlay-term-input', 'countryCode');
+        cy.fixture('countryCode').then((json) => {
+            cy.log(`${json.countryCode}`);
+            debugger
+            cy.get('#complex-filter-search-overlay-term-input').type(json.countryCode);
+        });
     });
 
-    it('Click elsewhere to switch the context', () => {
-        cy.get('#breadcrumbs-title').click();
-    });
+    // it('Click elsewhere to switch the context', () => {
+    //     cy.get('#breadcrumbs-title').click();
+    // });
 
     it('Click edit icon to update country', () => {
-        cy.get('mat-icon[contains(@id,"edit-mat-icon")]');
+        cy.get('mat-icon[contains(@id,"edit-mat-icon")]').click({ force: true });
     });
 
     it('Enter Comment', () => {

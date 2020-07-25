@@ -9,13 +9,19 @@ describe('Example to use different URL', () => {
     });
 
     // change environment variable for single test
-    // it('smoke test staging api', {
-    //     env: {
-    //         baseUrl: 'https://www.linkedin.com'
-    //     }
-    // }, () => {
-    //     cy.request(Cypress.env('baseUrl')).its('status').should('eq', 200)
-    // })
+    it('smoke test staging api', {
+        env: {
+            baseUrl: 'https://www.linkedin.com'
+        }
+    }, () => {
+        cy.request(Cypress.env('baseUrl')).its('status').should('eq', 200)
+    })
+
+    it('Accessing Country Code from Global Runtime Data', () => {
+        cy.fixture('countryCode').then((json) => {
+            cy.log(`${json.countryCode}`);
+        });
+    });
 
     // it('Open google search' , ()=> {
     //     cy.visit('http://www.google.co.in');

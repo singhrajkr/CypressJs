@@ -1,10 +1,30 @@
-import { getGlobalData, setGlobalData } from './globalTempData';
+import { uniqueStringCode, generateRandomNum, randomeAlphaCode } from './utils';
 
-// const GLOBAL_DATA = new Map();
 
-// Cypress.Commands.add('readData', () => {
-//   return require('../globalTempData.json');
-// });
+
+
+
+
+/**
+ * @parameter locator
+ * @parameter globalVarName
+ * @parameter flagToMakeGlobal
+ */
+Cypress.Commands.add('enterUniqueCode', (locator, globalVarName, flagToMakeGlobal) => {
+  const globalTempData = {};
+  if (flagToMakeGlobal === true) {
+    globalTempData[`${globalVarName}`] = uniqueStringCode(4);
+    cy.writeFile(`cypress/fixtures/${globalVarName}.json`, `{"${globalVarName}" : "${globalTempData[globalVarName]}"}`, { encoding: 'utf-8' });
+    cy.log('GLOBAL TEMP DATA::::::::::::::::::::::::::::::', globalTempData);
+    cy.get(locator).type(globalTempData[`${globalVarName}`]);
+  } else {
+    globalTempData[`${globalVarName}`] = uniqueStringCode(4);
+    cy.log('GLOBAL TEMP DATA::::::::::::::::::::::::::::::', globalTempData);
+    cy.get(locator).type(globalTempData[`${globalVarName}`]);
+  }
+});
+
+
 
 /**
  * @parameter email
@@ -18,7 +38,6 @@ Cypress.Commands.add('login', (email, password) => {
 });
 
 let LOCAL_STORAGE_MEMORY = {};
-
 Cypress.Commands.add('saveLocalStorageCache', () => {
   Object.keys(localStorage).forEach(key => {
     LOCAL_STORAGE_MEMORY[key] = localStorage[key];
@@ -34,18 +53,6 @@ Cypress.Commands.add('restoreLocalStorageCache', () => {
 Cypress.Commands.add('clearLocalStorageCache', () => {
   localStorage.clear();
   LOCAL_STORAGE_MEMORY = {};
-});
-
-/**
- * @parameter locator
- * @parameter globalVarName
- * cy.enterUniqueCode(locator, alphaLength)
- */
-Cypress.Commands.add('setAndEnterUniqueCode', (locator, globalVarName) => {
-  setGlobalData(globalVarName, `${uniqueStringCode(4)}`);
-  const data = getGlobalData(globalVarName);
-  cy.log('GLOBAL DATA::::::::::::::::::::::::::::::', data);
-  cy.get(locator).type(data);
 });
 
 /**
@@ -94,42 +101,6 @@ Cypress.Commands.add('enterNumISO2', (locator) => {
 Cypress.Commands.add('enterNumISO3', (locator) => {
   cy.get(locator).type(`${generateRandomNum(3)}`);
 });
-
-
-
-function uniqueStringCode(alphaLength) {
-  let result = '';
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const charactersLength = characters.length;
-  for (let i = 0; i < alphaLength; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  result = `${result + Date.now()}`;
-  return result;
-}
-
-function generateRandomNum(length) {
-  const add = 1;
-  let max = 12 - add;   // 12 is the min safe number Math.random() can generate without it starting to pad the end with zeros.
-  if (length > max) {
-    return generateRandomNum(max) + generateRandomNum(length - max);
-  }
-  max = Math.pow(10, length + add);
-  const min = max / 10; // Math.pow(10, n) basically
-  const number = Math.floor(Math.random() * (max - min + 1)) + min;
-  return ('' + number).substring(add);
-}
-
-
-function randomeAlphaCode(strLength) {
-  let result = '';
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-  const charactersLength = characters.length;
-  for (let i = 0; i < strLength; i++) {
-    result += characters.charAt(Math.floor(Math.random() * charactersLength));
-  }
-  return result;
-}
 
 /**
  * If you are typing into a password field, the password input is masked automatically within your application. 
