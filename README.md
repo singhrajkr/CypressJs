@@ -1,6 +1,6 @@
 ## How you can make this better 
 You can add some generic commands or may be plugins
-Feel free to Raise Pull Request.
+Feel free to Raise Pull Request to Master branch.
 If you face any difficulties while using this project. Please reachout to me via LinkedIn or Twitter.
 
 
