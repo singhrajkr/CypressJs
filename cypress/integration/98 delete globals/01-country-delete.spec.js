@@ -1,7 +1,10 @@
+/// <reference types="cypress" />
+
 describe('Delete Country Test', () => {
 
     before(() => {
         cy.visit('/configuration/country');
+        cy.wait(5000)
     });
 
     beforeEach(() => {
@@ -10,6 +13,10 @@ describe('Delete Country Test', () => {
 
     afterEach(() => {
         cy.saveLocalStorageCache();
+    });
+
+    after(() => {
+        // cy.saveLocalStorageCache();
     });
 
     it('Can login with valid email and password', () => {
@@ -23,18 +30,22 @@ describe('Delete Country Test', () => {
     it('Enter Code to search created country', () => {
         cy.fixture('countryCode').then((json) => {
             cy.log(`${json.countryCode}`);
-            debugger
             cy.get('#complex-filter-search-overlay-term-input').type(json.countryCode);
+            cy.wait(500)
         });
-        cy.get('#breadcrumbs-title').click();
+        cy.get('body').click();
     });
 
-    it('Click delete icon to update country', () => {
-        cy.get('mat-icon[contains(@id,"delete-mat-icon")]');
-    });
-
-    it('Click confirm delete button to delete country', () => {
-        cy.get('#delete-confirmation-dialog-delete-button').click();
+    it('Click delete icon to delete country', () => {
+        // cy.get('mat-icon[contains(@id,"delete-mat-icon")]');
+        cy.get('#country-list-DELBSTDCHN-delete-mat-icon').then(ele => {
+            cy.log(ele)
+            if (ele.length === 1) {
+                ele.click();
+                cy.get('#delete-confirmation-dialog-delete-button').click();
+                cy.contains('Record deleted successfully.')
+            }
+        })
     });
 
 });

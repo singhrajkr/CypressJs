@@ -1,12 +1,26 @@
 {
     "baseUrl": "https://shore-qa.otaliodev.com",
     "defaultCommandTimout": 15000,
-    "blacklistHosts": ["*google.com"],
+    "requestTimeout": 5000,
+    "responseTimeout": 20000,
+    "blacklistHosts": [
+        "*google.com",
+        "www.google-analytics.com",
+        "*.google-analytics.com",
+        "*google-analytics.com"
+    ],
     "env": {
         "projectId": "Otalio",
         "EMAIL": "medha@otalio.com",
         "PASSWORD": "888"
     },
+    "fixturesFolder": "cypress/fixtures",
+    "integrationFolder": "cypress/integration",
+    "pluginsFile": "cypress/plugins/index.js",
+    "screenshotsFolder": "cypress/screenshots",
+    "supportFile": "cypress/support/index.js",
+    "videosFolder": "cypress/videos",
+    "video": true,
     "trashAssetsBeforeRuns": true,
     "viewportHeight": 660,
     "viewportWidth": 1000,
@@ -17,7 +31,10 @@
     "onAfterScreenshot": null,
     "videoUploadOnPasses": false,
     "capture": "runner",
-    "firefoxGcInterval": { "runMode": 1, "openMode": 1 },
+    "firefoxGcInterval": {
+        "runMode": 1,
+        "openMode": 1
+    },
     "chromeWebSecurity": false,
     "reporter": "cypress-multi-reporters",
     "reporterOptions": {

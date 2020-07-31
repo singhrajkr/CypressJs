@@ -24,6 +24,8 @@ $npm install
 4. In terminal run the following command for the default environment QA from the root directory for the repo:
 ```
 $npm run test
+
+ "test": "npm run scripts || npm run posttest",
 ``` 
 8. In terminal run the below command for GUI mode for the default environment QA.
 ```
@@ -49,6 +51,21 @@ $npm run cypress:open:stage
 ```
 
 A cypress window should open. If it does you are good.
+
+## Visual Testing
+cy.get('.completed').should('have.css', 'text-decoration', 'line-through')
+cy.get('.completed').should('have.css', 'color', 'rgb(217,217,217)')
+
+
+## Cypress.config()
+You can also override configuration values within your test using Cypress.config()
+
+--- Scope
+Configuration set using Cypress.config is only in scope for the current spec file.
+
+Cypress.config('pageLoadTimeout', 100000)
+
+Cypress.config('pageLoadTimeout') // => 100000
 
 ## Fixture Files
 Fixtures are used as external pieces of static data that can be used by your tests.

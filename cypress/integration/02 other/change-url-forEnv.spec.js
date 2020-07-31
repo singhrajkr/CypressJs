@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 describe('Example to use different URL', () => {
     // change environment variable for single test
     it('smoke test develop api', {
