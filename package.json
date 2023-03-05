@@ -30,7 +30,7 @@
   "license": "MIT",
   "devDependencies": {
     "codelyzer": "^6.0.0",
-    "cypress": "^4.11.0",
+    "cypress": "^4.12.1",
     "cypress-multi-reporters": "1.4.0",
     "del-cli": "3.0.1",
     "jasmine-core": "~2.99.1",
